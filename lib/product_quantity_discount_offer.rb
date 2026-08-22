@@ -3,7 +3,7 @@
 class ProductQuantityDiscountOffer
   ALLOWED_OFFERS = [
     {
-      product_code: "R01",
+      product_code: 'R01',
       every_nth_item: 2,
       discount_percentage: 50
     }
@@ -33,7 +33,7 @@ class ProductQuantityDiscountOffer
   def validate_offer!
     return if offer_exists?
 
-    raise ArgumentError, "Offer is not valid on current product selection"
+    raise ArgumentError, 'Offer is not valid on current product selection'
   end
 
   def offer_exists?

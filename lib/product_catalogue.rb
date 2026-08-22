@@ -3,9 +3,9 @@
 class ProductCatalogue
   # INFO: product code and price cents
   DEFAULT_PRODUCTS = {
-      "R01" => 3295,
-      "G01" => 2495,
-      "B01" => 795
+    'R01' => 3295,
+    'G01' => 2495,
+    'B01' => 795
   }.freeze
 
   def initialize(products = DEFAULT_PRODUCTS)
@@ -29,7 +29,7 @@ class ProductCatalogue
   private
 
   def validate_product!(code, price_cents)
-    raise ArgumentError, "Product code cannot be blank" if code.to_s.empty?
+    raise ArgumentError, 'Product code cannot be blank' if code.to_s.empty?
 
     return if price_cents.is_a?(Integer) && price_cents >= 0
 

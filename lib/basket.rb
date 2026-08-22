@@ -25,7 +25,7 @@ class Basket
     format_cents(total_cents)
   end
 
-  # Note: need a way to peek into the basket 
+  # NOTE: need a way to peek into the basket
   # without exposing instance mutability
   def product_codes
     @product_codes.dup

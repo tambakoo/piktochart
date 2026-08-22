@@ -28,6 +28,6 @@ class DeliveryRules
   def validate_subtotal!(subtotal_cents)
     return if subtotal_cents.is_a?(Integer) && subtotal_cents >= 0
 
-    raise ArgumentError, "Subtotal must be a non-negative integer amount of cents"
+    raise ArgumentError, 'Subtotal must be a non-negative integer amount of cents'
   end
 end
