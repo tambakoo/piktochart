@@ -73,5 +73,5 @@ Money is represented internally as integer cents to avoid floating point precisi
 
 - Empty baskets return `"$0.00"` and do not receive a delivery charge.
 - Delivery charges are calculated after product discounts are applied.
-- Half-cent discount results are truncated through integer arithmetic.
+- Half-cent discount results are truncated through integer arithmetic. The discounted price is truncated and not the discount (to match the spec).
 - `Basket#add` raises an `ArgumentError` when the product catalogue cannot find a product code.

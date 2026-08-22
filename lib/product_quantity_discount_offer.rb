@@ -22,10 +22,12 @@ class ProductQuantityDiscountOffer
     return 0 if discounted_items_count.zero?
 
     full_price_cents = product_catalogue.price_for(@product_code)
-    discount_cents = (full_price_cents * @discount_percentage) / 100
-    discounted_price_cents = full_price_cents - discount_cents
+    discounted_price_percentage = 100 - @discount_percentage
+    discounted_price_cents = (full_price_cents * discounted_price_percentage) / 100
+    discount_cents_per_item = full_price_cents - discounted_price_cents
 
-    discounted_items_count * discounted_price_cents
+    discounted_items_count * discount_cents_per_item
+    # NOTE: truncating the discounted price to match the spec
   end
 
   private
