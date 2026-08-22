@@ -3,11 +3,13 @@
 RSpec.describe Basket do
   let(:product_catalogue) { ProductCatalogue.new }
   let(:delivery_rules) { DeliveryRules.new }
+  let(:offers) { [] }
 
   subject(:basket) do
     described_class.new(
       product_catalogue: product_catalogue,
-      delivery_rules: delivery_rules
+      delivery_rules: delivery_rules,
+      offers: offers
     )
   end
 
@@ -51,6 +53,22 @@ RSpec.describe Basket do
       basket.add("G01")
 
       expect(basket.total).to eq("$60.85")
+    end
+
+    context "with the red widget (R01) offer" do
+      let(:offers) { [ProductQuantityDiscountOffer.new(product_code: "R01", every_nth_item: 2, discount_percentage: 50)] }
+
+      it "calculates R01, R01 as $54.37" do
+        basket.add("R01").add("R01")
+
+        expect(basket.total).to eq("$54.37")
+      end
+
+      it "calculates B01, B01, R01, R01, R01 as $98.27" do
+        basket.add("B01").add("B01").add("R01").add("R01").add("R01")
+
+        expect(basket.total).to eq("$98.27")
+      end
     end
   end
 end
